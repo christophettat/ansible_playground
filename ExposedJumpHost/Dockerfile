@@ -43,13 +43,13 @@ RUN apt-get update \
 
 RUN mkdir -p $SSH_USER_HOME/.ssh
 RUN echo "$PRIVKEY" > $SSH_USER_HOME/.ssh/id_rsa
-RUN echo -e "Host *\n\tStrictHostKeyCheckiZZng no\n" >> /home/ansible/.ssh/config
-RUN chown -R ansible:ansible /home/ansible
+RUN echo -e "Host *\n\tStrictHostKeyCheckiZZng no\n" >> $SSH_USER_HOME/.ssh/config
+RUN chown -R $SSH_USER:$SSH_GROUP $SSH_USER_HOME
 
 # Copy over S6 configurations
-COPY etc/cont-init.d/ /etc/cont-init.d/
-COPY pam.d.sshd /etc/pam.d/ssh
-COPY sshd_config /etc/ssh/sshd_config
+COPY ./ExposedJumpHost/etc/cont-init.d/ /etc/cont-init.d/
+COPY ./ExposedJumpHost/pam.d.sshd /etc/pam.d/ssh
+COPY ./ExposedJumpHost/sshd_config /etc/ssh/sshd_config
 
 USER tunnel
 RUN cd /home/tunnel && \
