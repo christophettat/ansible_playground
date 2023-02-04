@@ -10,8 +10,6 @@ ssh-keygen -A
 
 #RUN useradd --create-home --shell /bin/ash ansible && \
 RUN addgroup -S ansible && adduser -D ansible -G ansible && \ 
-echo "root:root" | chpasswd && \
-echo "ansible:AmB3crGsBYQPazN4LtDTMx6pGQFR4aTNss5cnXrF" | chpasswd && \
 echo "ansible ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers 
 
 RUN mkdir -p /home/ansible/.ssh
