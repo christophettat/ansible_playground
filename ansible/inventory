@@ -1,0 +1,9 @@
+main
+
+[frontends]
+fe1
+fe2
+
+[backends]
+be1
+be2

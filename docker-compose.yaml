@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  main:
+    build:
+      context: ./
+      dockerfile: ./main/Dockerfile
+    environment:
+      - TAG=MAIN
+    networks:
+      - ansible
+    ports:
+      - "22009:22"
+  fe1:
+    build:
+      context: ./
+      dockerfile: ./sub/Dockerfile
+    environment:
+      - TAG=FE_1
+    networks:
+      - ansible
+  fe2:
+    build:
+      context: ./
+      dockerfile: ./sub/Dockerfile
+    environment:
+      - TAG=FE_2
+    networks:
+      - ansible
+  be1:
+    build:
+      context: ./
+      dockerfile: ./sub/Dockerfile
+    environment:
+      - TAG=BE_1
+    networks:
+      - ansible
+  be2:
+    build:
+      context: ./
+      dockerfile: ./sub/Dockerfile
+    environment:
+      - TAG=BE_2
+    networks:
+      - ansible
+
+networks:
+  ansible:
+    internal: true
