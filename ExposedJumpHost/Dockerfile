@@ -40,6 +40,12 @@ RUN apt-get update \
     && echo "Ensure generated keys are removed at this stage..." \
     && rm -rf /etc/ssh/ssh_host_*
 
+
+RUN mkdir -p $SSH_USER_HOME/.ssh
+RUN echo "$PRIVKEY" > $SSH_USER_HOME/.ssh/id_rsa
+RUN echo -e "Host *\n\tStrictHostKeyCheckiZZng no\n" >> /home/ansible/.ssh/config
+RUN chown -R ansible:ansible /home/ansible
+
 # Copy over S6 configurations
 COPY etc/cont-init.d/ /etc/cont-init.d/
 COPY pam.d.sshd /etc/pam.d/ssh

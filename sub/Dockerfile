@@ -13,9 +13,10 @@ RUN addgroup -S ansible && adduser -D ansible -G ansible && \
 echo "ansible ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers 
 
 RUN mkdir -p /home/ansible/.ssh
-COPY ./ansible_keys/id_rsa /home/ansible/.ssh/id_rsa
-COPY ./ansible_keys/id_rsa.pub /home/ansible/.ssh/id_rsa.pub
-COPY ./ansible_keys/authorized_keys /home/ansible/.ssh/authorized_keys
+#COPY ./ansible_keys/id_rsa /home/ansible/.ssh/id_rsa
+#COPY ./ansible_keys/id_rsa.pub /home/ansible/.ssh/id_rsa.pub
+#COPY ./ansible_keys/authorized_keys /home/ansible/.ssh/authorized_keys
+RUN echo "$PUBKEY" > /home/ansible/.ssh/authorized_keys
 RUN echo -e "Host *\n\tStrictHostKeyCheckiZZng no\n" >> /home/ansible/.ssh/config
 RUN chown -R ansible:ansible /home/ansible
 

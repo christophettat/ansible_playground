@@ -12,10 +12,11 @@ ssh-keygen -A
 RUN addgroup -S ansible && adduser -D ansible -G ansible &&
 
 RUN mkdir -p /home/ansible/.ssh
-COPY ./ansible_keys/id_rsa /home/ansible/.ssh/id_rsa
-COPY ./ansible_keys/id_rsa.pub /home/ansible/.ssh/id_rsa.pub
+#COPY ./ansible_keys/id_rsa /home/ansible/.ssh/id_rsa
+#COPY ./ansible_keys/id_rsa.pub /home/ansible/.ssh/id_rsa.pub
 COPY ./ansible/inventory /home/ansible/inventory
 COPY ./ansible/ansible.cfg /home/ansible/ansible.cfg
+RUN echo "$PUBKEY" > /home/ansible/.ssh/authorized_keys
 RUN echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /home/ansible/.ssh/config
 RUN chown -R ansible:ansible /home/ansible
 
