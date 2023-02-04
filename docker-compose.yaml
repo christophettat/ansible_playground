@@ -1,6 +1,20 @@
 version: "3.9"
 services:
-  main:
+
+  jump:
+    build:
+      context: ./
+      dockerfile: ./ExposedJumpHost/Dockerfile
+    environment:
+      - TAG=JUMPHOST
+    networks:
+      - ansible
+    ports:
+      - "22009:22"
+    volumes:
+      - secrets:/home/tunnel/.ssh
+
+  ansi_main:
     build:
       context: ./
       dockerfile: ./main/Dockerfile
@@ -11,9 +25,9 @@ services:
     ports:
       - "22009:22"
     volumes:
-      - secrets:/home/tunnel/.ssh
+     - secrets:/home/ansible/.ssh
 
-  fe1:
+  ansi_fe1:
     build:
       context: ./
       dockerfile: ./sub/Dockerfile
@@ -23,7 +37,7 @@ services:
       - ansible
     volumes:
       - secrets:/home/ansible/.ssh
-  fe2:
+  ansi_fe2:
     build:
       context: ./
       dockerfile: ./sub/Dockerfile
@@ -33,7 +47,7 @@ services:
       - ansible
     volumes:
       - secrets:/home/ansible/.ssh
-  be1:
+  ansi_be1:
     build:
       context: ./
       dockerfile: ./sub/Dockerfile
@@ -43,7 +57,7 @@ services:
       - ansible
     volumes:
       - secrets:/home/ansible/.ssh
-  be2:
+  ansi_be2:
     build:
       context: ./
       dockerfile: ./sub/Dockerfile
