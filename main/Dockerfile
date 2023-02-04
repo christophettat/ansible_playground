@@ -9,8 +9,7 @@ apk add sudo && \
 ssh-keygen -A 
 
 #RUN useradd --create-home --shell /bin/ash ansible && \
-RUN addgroup -S ansible && adduser -D ansible -G ansible &&
-
+RUN addgroup -S ansible && adduser -D ansible -G ansible
 RUN mkdir -p /home/ansible/.ssh
 #COPY ./ansible_keys/id_rsa /home/ansible/.ssh/id_rsa
 #COPY ./ansible_keys/id_rsa.pub /home/ansible/.ssh/id_rsa.pub
