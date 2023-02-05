@@ -49,12 +49,13 @@ RUN chown -R $SSH_USER:$SSH_GROUP $SSH_USER_HOME
 # Copy over S6 configurations
 COPY ./ExposedJumpHost/etc/cont-init.d/ /etc/cont-init.d/
 COPY ./ExposedJumpHost/pam.d.sshd /etc/pam.d/ssh
-COPY ./ExposedJumpHost/sshd_config /etc/ssh/sshd_config
+#COPY ./ExposedJumpHost/sshd_config /etc/ssh/sshd_config
 
 USER tunnel
 RUN cd /home/tunnel && \
 echo "rnd\nrnd" | otpw-gen > nothingtosee.txt	
 
+USER root
 
 #Expose the SSH port
 EXPOSE 2222

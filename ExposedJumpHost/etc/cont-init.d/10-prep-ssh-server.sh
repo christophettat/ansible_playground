@@ -11,7 +11,7 @@ echo "🔐 Setting SSHD configuration..."
   echo "PermitEmptyPasswords no"
   echo "MaxAuthTries 5"
   echo "LoginGraceTime 20"
-  echo "ChallengeResponseAuthentication no"
+  echo "ChallengeResponseAuthentication yes"
   echo "KerberosAuthentication no"
   echo "GSSAPIAuthentication no"
   echo "X11Forwarding no"
@@ -21,6 +21,7 @@ echo "🔐 Setting SSHD configuration..."
   echo "HostKey ${SSH_HOST_KEY_DIR}/ssh_host_rsa_key"
   echo "HostKey ${SSH_HOST_KEY_DIR}/ssh_host_ecdsa_key"
   echo "HostKey ${SSH_HOST_KEY_DIR}/ssh_host_ed25519_key"
+  ech  "UsePAM yes"
 } > /etc/ssh/sshd_config.d/custom.conf
 
 #########################################
