@@ -28,8 +28,8 @@ RUN apt-get update \
         locales \
         locales-all \
         otpw-bin \
-        libpam-otpw \
-    && echo "Create run directory..." \
+        libpam-otpw 
+RUN echo "Create run directory..." \
     && mkdir /run/sshd \
     && echo "Configure our SSH user" \
     && groupadd -r -g $PGID $SSH_GROUP \
@@ -49,7 +49,7 @@ RUN chown -R $SSH_USER:$SSH_GROUP $SSH_USER_HOME
 # Copy over S6 configurations
 COPY ./ExposedJumpHost/etc/cont-init.d/ /etc/cont-init.d/
 COPY ./ExposedJumpHost/pam.d.sshd /etc/pam.d/ssh
-#COPY ./ExposedJumpHost/sshd_config /etc/ssh/sshd_config
+# COPY ./ExposedJumpHost/sshd_config /etc/ssh/sshd_config
 
 USER tunnel
 RUN cd /home/tunnel && \
