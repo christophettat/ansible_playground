@@ -21,14 +21,16 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # Install SSH server and ping command
 RUN apt-get update \
-    && echo "Install requirements..." \
-    && apt-get -y --no-install-recommends install \
+    && echo "Install requirements..." 
+
+RUN apt-get -y --no-install-recommends install \
         openssh-server \
         iputils-ping \
         locales \
-        locales-all 
-#        otpw-bin \
-#        libpam-otpw 
+        locales-all \
+        otpw-bin \
+        libpam-otpw 
+        
 RUN echo "Create run directory..." \
     && mkdir /run/sshd \
     && echo "Configure our SSH user" \
