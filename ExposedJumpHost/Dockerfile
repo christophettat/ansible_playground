@@ -26,9 +26,9 @@ RUN apt-get update \
         openssh-server \
         iputils-ping \
         locales \
-        locales-all \
-        otpw-bin \
-        libpam-otpw 
+        locales-all 
+#        otpw-bin \
+#        libpam-otpw 
 RUN echo "Create run directory..." \
     && mkdir /run/sshd \
     && echo "Configure our SSH user" \
